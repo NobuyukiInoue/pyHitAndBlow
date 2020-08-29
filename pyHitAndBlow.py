@@ -84,7 +84,7 @@ def calc(n, result_table, enable_print, answer_number):
             target_number = str(result_table[num].number)
             if result_table[num].enabled and target_number not in history.challenge:
                 history.challenge.append(target_number)
-                print("target is {0} ?".format(target_number))
+                print("Your number is {0} ?".format(target_number))
                 break
 
         # input response.
@@ -174,7 +174,7 @@ def print_and_count_result(result_table, enable_print, answer_number):
             print("Error!! The answer {0} is not left.".format(answer_number))
             return -1
 
-    print("\nremaining count = {0}".format(remaing_count))
+    print("\n(remaining count = {0}) ".format(remaing_count), end = "")
 
     return remaing_count
 

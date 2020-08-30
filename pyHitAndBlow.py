@@ -30,6 +30,9 @@ def main()-> int:
         if sys.argv[2].isdecimal():
             answer_number = sys.argv[2]
             print("set answer number ... {0}".format(answer_number))
+        else:
+            print("{0} is not decimal.".format(sys.argv[2]))
+            return 0
 
     target_numbers = create_target_numbers(4)
     result, history = calc(4, target_numbers, enable_print, answer_number)

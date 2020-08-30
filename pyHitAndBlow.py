@@ -20,23 +20,39 @@ def main()-> int:
     """
     function main.
     """
-    enable_print = False
-    if len(sys.argv) >= 2:
-         if sys.argv[1].upper() == "TRUE":
-             enable_print = True
 
-    answer_number = ""
-    if len(sys.argv) >= 3:
-        if sys.argv[2].isdecimal():
-            answer_number = sys.argv[2]
-            print("set answer number ... {0}".format(answer_number))
+    # set n(digits of answer number).
+    n = 4
+    if len(sys.argv) >= 2:
+        if sys.argv[1].isdecimal():
+            n = int(sys.argv[1])
+            print("n ... {0}".format(n))
         else:
-            print("{0} is not decimal.".format(sys.argv[2]))
+            print("{0} is not decimal.".format(sys.argv[1]))
             return 0
 
-    target_numbers = create_target_numbers(4)
-    result, history = calc(4, target_numbers, enable_print, answer_number)
-    print_history(history, result)
+    # set enable_print
+    enable_print = False
+    if len(sys.argv) >= 3:
+         if sys.argv[2].upper() == "TRUE":
+             enable_print = True
+
+    # set answer number
+    answer_number = ""
+    if len(sys.argv) >= 4:
+        if sys.argv[3].isdecimal():
+            answer_number = sys.argv[3]
+            if len(answer_number) != n:
+                print("answer number digits is not {0}".format(n))
+                return 0
+            print("set answer number ... {0}".format(answer_number))
+        else:
+            print("{0} is not decimal.".format(sys.argv[3]))
+            return 0
+
+    target_numbers = create_target_numbers(n)
+    result, history = calc(n, target_numbers, enable_print, answer_number)
+    print_history(n, history, result)
 
     if result:
         return len(history.response)
@@ -219,7 +235,7 @@ def print_and_count_remaining(target_numbers:list, enable_print:bool, answer_num
     return remaing_count
 
 
-def print_history(history:HistoryRecords, result:bool):
+def print_history(n:int, history:HistoryRecords, result:bool):
     """
     print history.
     """
@@ -228,9 +244,10 @@ def print_history(history:HistoryRecords, result:bool):
     else:
         print("calculate failed.")
 
+    format_str = "[{0}] ({1:" + str(n) + "d}) <--- {2} ({3}, {4})"
     print("\n===== challenge history =====")
     for i in range(len(history.challenge)):
-        print("[{0}] ({1:4d}) <--- {2} ({3}, {4})".format(i + 1, history.remaining_count[i], history.challenge[i], history.response[i][0], history.response[i][1]))
+        print(format_str.format(i + 1, history.remaining_count[i], history.challenge[i], history.response[i][0], history.response[i][1]))
 
 
 if __name__ == '__main__':

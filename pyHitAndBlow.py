@@ -40,7 +40,7 @@ def main()-> int:
     else:
         return 0
 
-def create_target_numbers(n:int)-> list:
+def create_target_numbers(n:int)-> [str]:
     """
     create target numbers.
     """
@@ -117,7 +117,7 @@ def calc(n:int, target_numbers:str, enable_print:bool, answer_number:str)-> (boo
     return True, history
 
 
-def response_check(n:int, answer_number:str, target_number:str):
+def response_check(n:int, answer_number:str, target_number:str)->(int, int):
     """
     response check.
     """
@@ -162,7 +162,7 @@ def response_input(n, challenge_count)->(int, int):
     return H, B
 
 
-def answer_check(n:int, table_number:str, target_number:str, H:int, B:int):
+def answer_check(n:int, table_number:str, target_number:str, H:int, B:int)->bool:
     """
     answer check.
     """
@@ -186,7 +186,7 @@ def answer_check(n:int, table_number:str, target_number:str, H:int, B:int):
     return True
 
 
-def print_and_count_remaining(target_numbers:list, enable_print:bool, answer_number:str):
+def print_and_count_remaining(target_numbers:list, enable_print:bool, answer_number:str)->int:
     """
     print and count remaining.
     """

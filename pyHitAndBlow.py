@@ -22,14 +22,14 @@ def main()-> int:
     """
 
     # set n(digits of answer number).
-    n = 4
+    N = 4
     if len(sys.argv) >= 2:
         if sys.argv[1].isdecimal():
-            n = int(sys.argv[1])
-            if n < 2 or n > 10:
+            N = int(sys.argv[1])
+            if N < 2 or N > 10:
                 print("Give n between 2 and 10 inclusive.")
                 return 0
-            print("n ... {0}".format(n))
+            print("N ... {0}".format(N))
         else:
             print("{0} is not decimal.".format(sys.argv[1]))
             return 0
@@ -45,17 +45,17 @@ def main()-> int:
     if len(sys.argv) >= 4:
         if sys.argv[3].isdecimal():
             answer_number = sys.argv[3]
-            if len(answer_number) != n:
-                print("answer number digits is not {0}".format(n))
+            if len(answer_number) != N:
+                print("answer number digits is not {0}".format(N))
                 return 0
             print("set answer number ... {0}".format(answer_number))
         else:
             print("{0} is not decimal.".format(sys.argv[3]))
             return 0
 
-    target_numbers = create_target_numbers(n)
-    result, history = calc(n, target_numbers, enable_print, answer_number)
-    print_history(n, history, result)
+    target_numbers = create_target_numbers(N)
+    result, history = calc(N, target_numbers, enable_print, answer_number)
+    print_history(N, history, result)
 
     if result:
         return len(history.response)
@@ -107,14 +107,11 @@ def calc(n:int, target_numbers:str, enable_print:bool, answer_number:str)-> (boo
 
         challenge_count += 1
 
+        selected_number = create_canidiate_number(n, target_numbers, history)
+        history.challenge.append(selected_number)
+
         # print canidiate number.
-        while True:
-            index = int(random.random() * len(target_numbers))
-            selected_number = str(target_numbers[index])
-            if selected_number not in history.challenge:
-                history.challenge.append(selected_number)
-                print("Is your number {0} ?".format(selected_number))
-                break
+        print("Is your number {0} ?".format(selected_number))
 
         # input response.
         if answer_number != "":
@@ -138,6 +135,16 @@ def calc(n:int, target_numbers:str, enable_print:bool, answer_number:str)-> (boo
 
     return True, history
 
+def create_canidiate_number(n:int, target_numbers:[str], history:HistoryRecords)->str:
+    """
+    create canidiate number.
+    """
+    while True:
+        index = int(random.random() * len(target_numbers))
+        selected_number = str(target_numbers[index])
+        if selected_number not in history.challenge:
+            break
+    return selected_number
 
 def response_check(n:int, answer_number:str, target_number:str)->(int, int):
     """

@@ -26,6 +26,9 @@ def main()-> int:
     if len(sys.argv) >= 2:
         if sys.argv[1].isdecimal():
             n = int(sys.argv[1])
+            if n < 2 or n > 10:
+                print("Give n between 2 and 10 inclusive.")
+                return 0
             print("n ... {0}".format(n))
         else:
             print("{0} is not decimal.".format(sys.argv[1]))

@@ -23,6 +23,7 @@ def create_random_n_digits_number(n:int)->str:
     """
     create n-digit random target number.
     """
+    """
     target_number_str = ""
     for _ in range(n):
         while True:
@@ -31,6 +32,8 @@ def create_random_n_digits_number(n:int)->str:
                 target_number_str += d
                 break
     return target_number_str
+    """
+    return "".join([str(_) for _ in random.sample(list(range(10)), n)])
 
 if __name__ == '__main__':
     main()

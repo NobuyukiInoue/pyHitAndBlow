@@ -14,7 +14,7 @@ class HistoryRecords:
         self.remaining_count = []
 
 
-def main()-> int:
+def main() -> int:
     """
     function main.
     """
@@ -85,13 +85,28 @@ def create_target_numbers(n:int)-> [str]:
     return target_numbers
 
 
-def calc(n:int, target_numbers:str, enable_print:bool, answer_number:str)-> (bool, HistoryRecords):
+def create_random_n_digits_number(n:int) -> str:
+    """
+    create n-digit random target number.
+    """
+    target_number_str = ""
+    for _ in range(n):
+        while True:
+            d = str(random.randint(0, 9))
+            if d not in target_number_str:
+                target_number_str += d
+                break
+    return target_number_str
+
+
+def calc(n:int, target_numbers:str, enable_print:bool, answer_number:str) -> (bool, HistoryRecords):
     """
     caluculate Your number.
     """
     H, B = 0, 0
     challenge_count = 0
     history = HistoryRecords()
+    random.seed()
 
     while H < n:
         """
@@ -133,18 +148,37 @@ def calc(n:int, target_numbers:str, enable_print:bool, answer_number:str)-> (boo
 
     return True, history
 
-def create_canidiate_number(n:int, target_numbers:[str], history:HistoryRecords)->str:
+def create_canidiate_number(n:int, target_numbers:[str], history:HistoryRecords) -> str:
     """
     create canidiate number.
     """
+
+    '''
+    if len(history.challenge) == 1:
+        while True:
+            selected_number = create_random_n_digits_number(n)
+            enable_break = True
+            for col in selected_number:
+                if col in history.challenge[0]:
+                    enable_break = False
+                    break
+            if enable_break:
+                return selected_number
+    else:
+        while True:
+            index = random.randint(0, len(target_numbers) - 1)
+            selected_number = str(target_numbers[index])
+            if selected_number not in history.challenge:
+                return selected_number
+    '''
+
     while True:
-        index = int(random.random() * len(target_numbers))
+        index = random.randint(0, len(target_numbers) - 1)
         selected_number = str(target_numbers[index])
         if selected_number not in history.challenge:
-            break
-    return selected_number
+            return selected_number
 
-def response_check(n:int, answer_number:str, target_number:str)->(int, int):
+def response_check(n:int, answer_number:str, target_number:str) -> (int, int):
     """
     response check.
     """
@@ -161,7 +195,7 @@ def response_check(n:int, answer_number:str, target_number:str)->(int, int):
     return H, B
 
 
-def response_input(n, challenge_count)->(int, int):
+def response_input(n:int, challenge_count:int) -> (int, int):
     """
     response input
     """
@@ -189,7 +223,7 @@ def response_input(n, challenge_count)->(int, int):
     return H, B
 
 
-def answer_check(n:int, table_number:str, target_number:str, H:int, B:int)->bool:
+def answer_check(n:int, table_number:str, target_number:str, H:int, B:int) -> bool:
     """
     answer check.
     """
@@ -213,7 +247,7 @@ def answer_check(n:int, table_number:str, target_number:str, H:int, B:int)->bool
     return True
 
 
-def print_and_count_remaining(target_numbers:list, enable_print:bool, answer_number:str)->int:
+def print_and_count_remaining(target_numbers:list, enable_print:bool, answer_number:str) -> int:
     """
     print and count remaining.
     """
@@ -238,7 +272,7 @@ def print_and_count_remaining(target_numbers:list, enable_print:bool, answer_num
             print("Error!! The answer {0} is not left.".format(answer_number))
             return 0
 
-    print("\n(remaining count = {0}) ".format(remaing_count), end = "")
+    print("\n(remaining count = {0:4d}) ".format(remaing_count), end = "")
 
     return remaing_count
 

@@ -13,7 +13,12 @@ function main() {
     RESULT_COUNT=()
 
     for ((i=0; i < $MAX; i++)); do
-        ANSWER_NUMBER=`python ./testscripts/create_random_n-digits.py`
+        ANSWER_NUMBER=`python ./testscripts/create_random_n_digits_number.py`
+
+        printf "#------------------------------#\n"
+        printf "# ($i/$MAX)\n"
+        printf "#------------------------------#\n"
+
         python $TARGET_PY $N $ENABLE_PRINT $ANSWER_NUMBER
         RESULT_COUNT+=($?)
     done

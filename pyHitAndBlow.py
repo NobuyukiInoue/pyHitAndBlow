@@ -206,7 +206,11 @@ def response_input(n:int, challenge_count:int) -> (int, int):
         if workStr == str(n):
             return n, 0
 
-        flds = workStr.replace(" ", "").split(",")
+        if "," in workStr:
+            flds = workStr.replace(" ", "").split(",")
+        else:
+            flds = workStr.split(" ")
+
         if len(flds) == 2:
             try:
                 H, B = int(flds[0]), int(flds[1])

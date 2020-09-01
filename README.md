@@ -183,14 +183,14 @@ my answer number is 9360.
 ```
 
 
-## 3. create_random_n-digits.py
+## 3. create_random_n_digits_number.py
 
 This script outputs a unique 4-digit number obtained by random numbers.
 
 ### 3-1. Usage
 
 ```
-create_random_n-digits.py [N]
+create_random_n_digits_number.py [N]
 ```
 
 ### 3-2. Options
@@ -202,7 +202,7 @@ N|digits of answer number. (2 <= N <= 10)<br>(default ... 4)
 ### 3-3. Execution example
 
 ```
-$ python ./testscripts/create_random_n_digits_number.py 4
+$ python create_random_n_digits_number.py 4
 2357
 ```
 

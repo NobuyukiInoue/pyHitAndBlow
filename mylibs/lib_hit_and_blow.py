@@ -233,6 +233,9 @@ def response_input(n:int, challenge_count:int) -> (int, int):
         if workStr == str(n):
             return n, 0
 
+        while "  " in workStr:
+            workStr = workStr.replace("  ", " ")
+
         if "," in workStr:
             flds = workStr.replace(" ", "").split(",")
         else:
@@ -241,11 +244,13 @@ def response_input(n:int, challenge_count:int) -> (int, int):
         if len(flds) == 2:
             try:
                 H, B = int(flds[0]), int(flds[1])
-                if H < 0 or H > n:
-                    continue
-                if B < 0 or B > n:
-                    continue
-                if H == n - 1 and B == 1:
+                if H == n and B == 0:
+                    break
+                elif (H + B >= n) \
+                or (H < 0 or H > n) \
+                or (B < 0 or B > n) \
+                or (H == n - 1 and B == 1):
+                    print("{0} is invalid.".format(workStr))
                     continue
                 break
             except:

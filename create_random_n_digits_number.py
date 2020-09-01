@@ -3,6 +3,8 @@
 import random
 import sys
 
+from mylibs import lib_hit_and_blow
+
 def main():
     # set n(digits of answer number).
     N = 4
@@ -17,23 +19,8 @@ def main():
             return 0
     
     random.seed()
-    print(create_random_n_digits_number(N))
+    print(lib_hit_and_blow.create_random_n_digits_number(N))
 
-def create_random_n_digits_number(n:int)->str:
-    """
-    create n-digit random target number.
-    """
-    """
-    target_number_str = ""
-    for _ in range(n):
-        while True:
-            d = str(random.randint(0, 9))
-            if d not in target_number_str:
-                target_number_str += d
-                break
-    return target_number_str
-    """
-    return "".join([str(_) for _ in random.sample(list(range(10)), n)])
 
 if __name__ == '__main__':
     main()

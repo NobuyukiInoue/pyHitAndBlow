@@ -1,4 +1,14 @@
-param($MAX)
+param($N, $MAX)
+
+if (-Not $N) {
+    $N = 4
+}
+else {
+    if (($N -lt 2) -Or ($N -gt 10)) {
+        Write-Output "Give N between 2 and 10 inclusive."
+        return
+    }
+}
 
 if (-Not $MAX) {
     $MAX = 10
@@ -10,25 +20,24 @@ else {
     }
 }
 
-function main() {
-    $TargetPythonScript = "./pyHitAndBlow.py"
-    $N = 4
+function main([int]$N, [int]$MAX) {
+    $TargetPythonScript = "./pyHitAndBlow_offence.py"
     $EnablePrint = "false"
 
     $ResultCount = @()
 
     for ($i = 0; $i -lt $MAX; $i++) {
-        $AnswerNumber = (python ./testscripts/create_random_n_digits_number.py)
+        $AnswerNumber = (python ./create_random_n_digits_number.py $N)
 
     #   Clear-Host
         Write-Output "#------------------------------#" `
-                     "# ($i/$MAX)" `
+                     "# Running ... ($i/$MAX)" `
                      "#------------------------------#"
         python $TargetPythonScript $N $EnablePrint $AnswerNumber
         $ResultCount += $LASTEXITCODE
     }
 
-    Write-Output "================================"
+    Write-Output "==== ResultCount history ====="
     $i = 0
     $TOTAL = 0
 
@@ -39,9 +48,9 @@ function main() {
 
     $AVERAGE = ${TOTAL} / $ResultCount.Length
 
-    Write-Output "================================"
+    Write-Output "=============================="
     Write-Output "average = $AVERAGE"
-    Write-Output "================================"
+    Write-Output "=============================="
 }
 
-main
+main $N $MAX

@@ -1,29 +1,33 @@
 #!/bin/bash
 
-MAX=10
+N=4
 if [ $# -ge 1 ]; then
-    MAX=$1
+    N=$1
+fi
+
+MAX=10
+if [ $# -ge 2 ]; then
+    MAX=$2
 fi
 
 function main() {
-    TARGET_PY="./pyHitAndBlow.py"
-    N=4
+    TARGET_PYTHON_SCRIPT="./pyHitAndBlow_offence.py"
     ENABLE_PRINT="false"
 
     RESULT_COUNT=()
 
     for ((i=0; i < $MAX; i++)); do
-        ANSWER_NUMBER=`python ./testscripts/create_random_n_digits_number.py`
+        ANSWER_NUMBER=`python ./create_random_n_digits_number.py $N`
 
         printf "#------------------------------#\n"
-        printf "# ($i/$MAX)\n"
+        printf "# Running ... ($i/$MAX)\n"
         printf "#------------------------------#\n"
 
-        python $TARGET_PY $N $ENABLE_PRINT $ANSWER_NUMBER
+        python $TARGET_PYTHON_SCRIPT $N $ENABLE_PRINT $ANSWER_NUMBER
         RESULT_COUNT+=($?)
     done
 
-    printf "================================\n"
+    printf "==== ResultCount history =====\n"
     i=0
     TOTAL=0
     for e in ${RESULT_COUNT[@]}; do
@@ -34,9 +38,11 @@ function main() {
 
     AVERAGE=`echo "scale=2; ${TOTAL} / ${i}" | bc`
 
-    printf "================================\n"
+    printf "==============================\n"
     printf "average = $AVERAGE\n"
-    printf "================================\n"
+    printf "==============================\n"
 }
 
-main
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi

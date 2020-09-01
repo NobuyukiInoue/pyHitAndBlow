@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-
-import os
 import random
-import sys
+
 
 class HistoryRecords:
     """
@@ -13,52 +10,6 @@ class HistoryRecords:
         self.response = []
         self.remaining_count = []
 
-
-def main() -> int:
-    """
-    function main.
-    """
-
-    # set n(digits of answer number).
-    N = 4
-    if len(sys.argv) >= 2:
-        if sys.argv[1].isdecimal():
-            N = int(sys.argv[1])
-            if N < 2 or N > 10:
-                print("Give n between 2 and 10 inclusive.")
-                return 0
-            print("N ... {0}".format(N))
-        else:
-            print("{0} is not decimal.".format(sys.argv[1]))
-            return 0
-
-    # set enable_print
-    enable_print = False
-    if len(sys.argv) >= 3:
-         if sys.argv[2].upper() == "TRUE":
-             enable_print = True
-
-    # set answer number
-    answer_number = ""
-    if len(sys.argv) >= 4:
-        if sys.argv[3].isdecimal():
-            answer_number = sys.argv[3]
-            if len(answer_number) != N:
-                print("answer number digits is not {0}".format(N))
-                return 0
-            print("set answer number ... {0}".format(answer_number))
-        else:
-            print("{0} is not decimal.".format(sys.argv[3]))
-            return 0
-
-    target_numbers = create_target_numbers(N)
-    result, history = calc(N, target_numbers, enable_print, answer_number)
-    print_history(N, history, result)
-
-    if result:
-        return len(history.response)
-    else:
-        return 0
 
 def create_target_numbers(n:int)-> [str]:
     """
@@ -102,7 +53,7 @@ def create_random_n_digits_number(n:int) -> str:
     return "".join([str(_) for _ in random.sample(list(range(10)), n)])
 
 
-def calc(n:int, target_numbers:str, enable_print:bool, answer_number:str) -> (bool, HistoryRecords):
+def offence(n:int, target_numbers:str, enable_print:bool, answer_number:str) -> (bool, HistoryRecords):
     """
     caluculate Your number.
     """
@@ -151,6 +102,45 @@ def calc(n:int, target_numbers:str, enable_print:bool, answer_number:str) -> (bo
 
     return True, history
 
+
+def defence(n:int, target_numbers:str, enable_print:bool, answer_number:str) -> (bool, HistoryRecords):
+    """
+    caluculate Your number.
+    """
+
+    print("When you want to end on the way, please input 0\n")
+
+    H, B = 0, 0
+    challenge_count = 0
+    history = HistoryRecords()
+
+    if answer_number == "" or answer_number is None:
+        answer_number = create_random_n_digits_number(n)
+
+    while H < n:
+        """
+        remaining count check.
+        """
+        challenge_count += 1
+
+        selected_number = input_selected_number(n, challenge_count)
+        if selected_number is None:
+            print("break.")
+            return False, history
+
+        history.challenge.append(selected_number)
+
+        H, B = response_check(n, answer_number, selected_number)
+        history.response.append([H, B])
+        print("input response is Hit = {0}, Blow = {1}".format(H, B))
+
+    print("\n"
+          "congratulations!!!\n"
+          "my answer number is {0}.".format(answer_number))
+
+    return True, history
+
+
 def create_canidiate_number(n:int, target_numbers:[str], history:HistoryRecords) -> str:
     """
     create canidiate number.
@@ -181,6 +171,7 @@ def create_canidiate_number(n:int, target_numbers:[str], history:HistoryRecords)
         if selected_number not in history.challenge:
             return selected_number
 
+
 def response_check(n:int, answer_number:str, target_number:str) -> (int, int):
     """
     response check.
@@ -196,6 +187,39 @@ def response_check(n:int, answer_number:str, target_number:str) -> (int, int):
                 B += 1
 
     return H, B
+
+
+def input_selected_number(n:int, challenge_count:int) -> str:
+    """
+    input selected number
+    """
+    format_str = "[{0}] : select number " + "x"*n + " = "
+    while True:
+        print(format_str.format(challenge_count), end = "")
+        # input number.
+        selected_number = input()
+
+        if selected_number == "0" :
+            return None
+
+        if len(selected_number) != n:
+            print("{0} is invalid number.".format(selected_number))
+            continue
+
+        if not selected_number.isdecimal():
+            print("{0} is invalid number.".format(selected_number))
+            continue
+
+        enable_return = True
+        for i in range(len(selected_number) - 1):
+            if selected_number[i] in selected_number[i + 1:]:
+                enable_return = False
+                break
+        
+        if enable_return:
+            return selected_number
+
+        print("{0} is invalid number.".format(selected_number))
 
 
 def response_input(n:int, challenge_count:int) -> (int, int):
@@ -284,7 +308,7 @@ def print_and_count_remaining(target_numbers:list, enable_print:bool, answer_num
     return remaing_count
 
 
-def print_history(n:int, history:HistoryRecords, result:bool):
+def print_offence_history(n:int, history:HistoryRecords, result:bool):
     """
     print history.
     """
@@ -293,11 +317,17 @@ def print_history(n:int, history:HistoryRecords, result:bool):
     else:
         print("calculate failed.")
 
-    format_str = "[{0}] ({1:" + str(n) + "d}) <--- {2} ({3}, {4})"
-    print("\n===== challenge history =====")
+    format_str = "[{0}] ({1:" + str(n) + "d}) ---> {2} ({3}, {4})"
+    print("\n===== challenge history ======")
     for i in range(len(history.challenge)):
         print(format_str.format(i + 1, history.remaining_count[i], history.challenge[i], history.response[i][0], history.response[i][1]))
 
 
-if __name__ == '__main__':
-    sys.exit(main())
+def print_defence_history(n:int, history:HistoryRecords, result:bool):
+    """
+    print history.
+    """
+    format_str = "[{0}]  .... {1} ({2}, {3})"
+    print("\n===== challenge history ======")
+    for i in range(len(history.challenge)):
+        print(format_str.format(i + 1, history.challenge[i], history.response[i][0], history.response[i][1]))

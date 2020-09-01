@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import sys
-
 from mylibs import lib_hit_and_blow
 
 def main() -> int:

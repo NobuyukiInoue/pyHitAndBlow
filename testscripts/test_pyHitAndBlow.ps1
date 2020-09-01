@@ -24,6 +24,8 @@ function main([int]$N, [int]$MAX) {
     $TargetPythonScript = "./pyHitAndBlow_offence.py"
     $EnablePrint = "false"
 
+    $StartTime = Get-Date
+
     $ResultCount = @()
 
     for ($i = 0; $i -lt $MAX; $i++) {
@@ -31,7 +33,7 @@ function main([int]$N, [int]$MAX) {
 
     #   Clear-Host
         Write-Output "#------------------------------#" `
-                     "# Running ... ($i/$MAX)" `
+                     "# Running ... $(${i} + 1)/$MAX" `
                      "#------------------------------#"
         python $TargetPythonScript $N $EnablePrint $AnswerNumber
         $ResultCount += $LASTEXITCODE
@@ -47,10 +49,15 @@ function main([int]$N, [int]$MAX) {
     }
 
     $AVERAGE = ${TOTAL} / $ResultCount.Length
+    $EndTime = Get-Date
 
     Write-Output "=============================="
     Write-Output "average = $AVERAGE"
     Write-Output "=============================="
+    Write-Output "start ... $($StartTime.ToString('yyyy-MM-dd HH:mm:ss'))"
+    Write-Output "end   ... $($EndTime.ToString('yyyy-MM-dd HH:mm:ss'))"
+
+    Write-Output "Total execution time ... $(($EndTime - $StartTime).TotalSeconds)[s]"
 }
 
 main $N $MAX

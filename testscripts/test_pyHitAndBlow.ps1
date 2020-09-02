@@ -27,6 +27,7 @@ function main([int]$N, [int]$MAX) {
     $StartTime = Get-Date
 
     $ResultCount = @()
+    $TOTAL = 0
 
     for ($i = 0; $i -lt $MAX; $i++) {
         $AnswerNumber = (python ./create_random_n_digits_number.py $N)
@@ -37,22 +38,24 @@ function main([int]$N, [int]$MAX) {
                      "#------------------------------#"
         python $TargetPythonScript $N $EnablePrint $AnswerNumber
         $ResultCount += $LASTEXITCODE
+
+        $TOTAL += $ResultCount[$ResultCount.Length - 1]
+        $AVERAGE = ${TOTAL} / $ResultCount.Length
+
+        Write-Output "`n# Latest Average = $AVERAGE`n"
     }
 
     Write-Output "==== ResultCount history ====="
-    $i = 0
-    $TOTAL = 0
 
     for ($i = 0; $i -lt $ResultCount.Length; $i++) {
         Write-Output "ResultCount[$i] = $($ResultCount[$i])"
-        $TOTAL += $ResultCount[$i]
     }
 
     $AVERAGE = ${TOTAL} / $ResultCount.Length
     $EndTime = Get-Date
 
     Write-Output "=============================="
-    Write-Output "average = $AVERAGE"
+    Write-Output "Total Average = $AVERAGE"
     Write-Output "=============================="
     Write-Output "start ... $($StartTime.ToString('yyyy-MM-dd HH:mm:ss'))"
     Write-Output "end   ... $($EndTime.ToString('yyyy-MM-dd HH:mm:ss'))"

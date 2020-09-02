@@ -1,7 +1,7 @@
 # pyHitAndBlow
 
-Auto Caluculate Hit & Blow (Bulls and Cows) Offence & Defence scripts by Python3.<br>
-Calculate the number of N digits you have decided.<br>
+Hit & Blow (Bulls and Cows) Offense & Defense Script by Python3.<br>
+Offence Script solve the number of N digits you have decided.<br>
 <br>
 https://en.wikipedia.org/wiki/Bulls_and_Cows
 
@@ -244,6 +244,9 @@ calculate successful.
 [4] (  26) ---> 1467 (1, 1)
 [5] (   6) ---> 6097 (0, 2)
 [6] (   1) ---> 8160 (4, 0)
+
+# Latest Average = 5.4
+
 ==== ResultCount history =====
 ResultCount[0] = 4
 ResultCount[1] = 5
@@ -298,6 +301,9 @@ calculate successful.
 [3] ( 304) ---> 1938 (0, 3)
 [4] (  16) ---> 3895 (2, 2)
 [5] (   1) ---> 5893 (4, 0)
+
+# Latest Average = 5.4
+
 ==== ResultCount history =====
 ResultCount[0] = 6
 ResultCount[1] = 5

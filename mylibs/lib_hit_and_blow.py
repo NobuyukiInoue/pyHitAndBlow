@@ -1,5 +1,6 @@
-import random
+# -*- coding: utf-8 -*-
 
+import random
 
 class HistoryRecords:
     """
@@ -74,7 +75,12 @@ def offence(n:int, target_numbers:str, enable_print:bool, answer_number:str) -> 
 
         challenge_count += 1
 
-        selected_number = create_canidiate_number(n, target_numbers, history)
+        if n == 4:
+            selected_number = create_canidiate_number4_Minimum_question_strategy(n, target_numbers, history)
+        #   selected_number = create_canidiate_number4_Highest_winning_strategy(n, target_numbers, history)
+
+        else:
+            selected_number = create_canidiate_number(n, target_numbers, history)
         history.challenge.append(selected_number)
 
         # print canidiate number.
@@ -145,31 +151,159 @@ def create_canidiate_number(n:int, target_numbers:[str], history:HistoryRecords)
     """
     create canidiate number.
     """
-
-    '''
-    if len(history.challenge) == 1:
+    if len(history.challenge) == 0:
         while True:
-            selected_number = create_random_n_digits_number(n)
-            enable_break = True
-            for col in selected_number:
-                if col in history.challenge[0]:
-                    enable_break = False
-                    break
-            if enable_break:
-                return selected_number
+            index = random.randint(0, len(target_numbers) - 1)
+            return str(target_numbers[index])
     else:
         while True:
             index = random.randint(0, len(target_numbers) - 1)
             selected_number = str(target_numbers[index])
-            if selected_number not in history.challenge:
+            if selected_number in history.challenge:
+                continue
+            H, B = response_check(n, history.challenge[-1], selected_number)
+            if history.response[-1] == [H, B]:
                 return selected_number
-    '''
 
-    while True:
-        index = random.randint(0, len(target_numbers) - 1)
-        selected_number = str(target_numbers[index])
-        if selected_number not in history.challenge:
-            return selected_number
+
+def create_canidiate_number4_Minimum_question_strategy(n:int, target_numbers:[str], history:HistoryRecords) -> str:
+    """
+    create canidiate number.
+    (Minimum question strategy)
+    """
+    if len(history.challenge) == 1:
+        while True:
+            """
+            index = random.randint(0, len(target_numbers) - 1)
+            selected_number = str(target_numbers[index])
+            """
+            selected_number = create_random_n_digits_number(n)
+            if selected_number in history.challenge:
+                continue
+            H, B = response_check(n, history.challenge[-1], selected_number)
+
+            """
+            Highest winning strategy
+            """
+            if history.response[-1] == [3, 0]:
+                if (H, B) == (1, 1):
+                    return selected_number
+            elif history.response[-1] == [2, 2]:
+                if (H, B) == (2, 2):
+                    return selected_number
+            elif history.response[-1] == [2, 1]:
+                if (H, B) == (2, 0):
+                    return selected_number
+            elif history.response[-1] == [2, 0]:
+                if (H, B) == (1, 1):
+                    return selected_number
+            elif history.response[-1] == [1, 3]:
+                if (H, B) == (2, 1):
+                    return selected_number
+            elif history.response[-1] == [1, 2]:
+                if (H, B) == (1, 1):
+                    return selected_number
+            elif history.response[-1] == [1, 1]:
+                if (H, B) == (1, 1):
+                    return selected_number
+            elif history.response[-1] == [1, 0]:
+                if (H, B) == (1, 0):
+                    return selected_number
+            elif history.response[-1] == [0, 4]:
+                if (H, B) == (0, 4):
+                    return selected_number
+            elif history.response[-1] == [0, 3]:
+                if (H, B) == (0, 2):
+                    return selected_number
+            elif history.response[-1] == [0, 2]:
+                if (H, B) == (0, 2):
+                    return selected_number
+            elif history.response[-1] == [0, 1]:
+                if (H, B) == (0, 1):
+                    return selected_number
+            elif history.response[-1] == [0, 0]:
+                if (H, B) == (0, 0):
+                    return selected_number
+            else:
+                return selected_number
+
+    else:
+        while True:
+            index = random.randint(0, len(target_numbers) - 1)
+            selected_number = str(target_numbers[index])
+            if selected_number in history.challenge:
+                continue
+            return str(target_numbers[index])
+
+
+def create_canidiate_number4_Highest_winning_strategy(n:int, target_numbers:[str], history:HistoryRecords) -> str:
+    """
+    create canidiate number.
+    (Highest winning strategy)
+    """
+    if len(history.challenge) == 1:
+        while True:
+            """
+            index = random.randint(0, len(target_numbers) - 1)
+            selected_number = str(target_numbers[index])
+            """
+            selected_number = create_random_n_digits_number(n)
+            if selected_number in history.challenge:
+                continue
+            H, B = response_check(n, history.challenge[-1], selected_number)
+
+            """
+            Highest winning strategy
+            """
+            if history.response[-1] == [3, 0]:
+                if (H, B) == (1, 0):
+                    return selected_number
+            elif history.response[-1] == [2, 2]:
+                if (H, B) == (1, 2):
+                    return selected_number
+            elif history.response[-1] == [2, 1]:
+                if (H, B) == (2, 0):
+                    return selected_number
+            elif history.response[-1] == [2, 0]:
+                if (H, B) == (1, 0):
+                    return selected_number
+            elif history.response[-1] == [1, 3]:
+                if (H, B) == (2, 1):
+                    return selected_number
+            elif history.response[-1] == [1, 2]:
+                if (H, B) == (1, 1):
+                    return selected_number
+            elif history.response[-1] == [1, 1]:
+                if (H, B) == (2, 0):
+                    return selected_number
+            elif history.response[-1] == [1, 0]:
+                if (H, B) == (0, 1):
+                    return selected_number
+            elif history.response[-1] == [0, 4]:
+                if (H, B) == (0, 3):
+                    return selected_number
+            elif history.response[-1] == [0, 3]:
+                if (H, B) == (0, 2):
+                    return selected_number
+            elif history.response[-1] == [0, 2]:
+                if (H, B) == (0, 2):
+                    return selected_number
+            elif history.response[-1] == [0, 1]:
+                if (H, B) == (0, 1):
+                    return selected_number
+            elif history.response[-1] == [0, 0]:
+                if (H, B) == (0, 0):
+                    return selected_number
+            else:
+                return selected_number
+
+    else:
+        while True:
+            index = random.randint(0, len(target_numbers) - 1)
+            selected_number = str(target_numbers[index])
+            if selected_number in history.challenge:
+                continue
+            return str(target_numbers[index])
 
 
 def response_check(n:int, answer_number:str, target_number:str) -> (int, int):
@@ -246,7 +380,7 @@ def response_input(n:int, challenge_count:int) -> (int, int):
                 H, B = int(flds[0]), int(flds[1])
                 if H == n and B == 0:
                     break
-                elif (H + B >= n) \
+                elif (H + B > n) \
                 or (H < 0 or H > n) \
                 or (B < 0 or B > n) \
                 or (H == n - 1 and B == 1):

@@ -18,6 +18,7 @@ function main() {
     TARGET_PYTHON_SCRIPT="./pyHitAndBlow_offence.py"
     ENABLE_PRINT="false"
     result_count=()
+    TOTAL=0
 
     for ((i=0; i < $MAX; i++)); do
         ANSWER_NUMBER=`python ./create_random_n_digits_number.py $N`
@@ -27,19 +28,22 @@ function main() {
         printf "#------------------------------#\n"
 
         python $TARGET_PYTHON_SCRIPT $N $ENABLE_PRINT $ANSWER_NUMBER
+
         result_count+=($?)
+        let TOTAL+=${result_count[$i]}
+        AVERAGE=`echo "scale=4; ${TOTAL} / ${#result_count[*]}" | bc`
+
+        printf "\n# Latest Average = $AVERAGE\n"
     done
 
     printf "==== ResultCount history =====\n"
     i=0
-    TOTAL=0
     for e in ${result_count[@]}; do
         printf "result_count[$i] = ${e}\n"
-        let TOTAL+=${e}
         let i++
     done
 
-    AVERAGE=`echo "scale=2; ${TOTAL} / ${i}" | bc`
+    AVERAGE=`echo "scale=4; ${TOTAL} / ${i}" | bc`
     end_time=`date "+%Y-%m-%d %H:%M:%S"`
 
     printf "==============================\n"

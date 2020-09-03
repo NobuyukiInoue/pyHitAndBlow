@@ -372,8 +372,13 @@ def response_input(n:int, challenge_count:int) -> (int, int):
 
         if "," in workStr:
             flds = workStr.replace(" ", "").split(",")
-        else:
+        elif " " in workStr:
             flds = workStr.split(" ")
+        elif len(workStr) == 2:
+            flds = [workStr[0], workStr[1]]
+        else:
+            print("{0} is invalid.".format(workStr))
+            continue
 
         if len(flds) == 2:
             try:

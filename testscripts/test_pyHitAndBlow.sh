@@ -23,9 +23,10 @@ function main() {
     for ((i=0; i < $MAX; i++)); do
         ANSWER_NUMBER=`python ./create_random_n_digits_number.py $N`
 
-        printf "#------------------------------#\n"
-        printf "# Running ... $((${i} + 1))/$MAX\n"
-        printf "#------------------------------#\n"
+        printf \
+"#------------------------------#\n"\
+"# Running ... $((${i} + 1))/$MAX\n"\
+"#------------------------------#\n"\
 
         python $TARGET_PYTHON_SCRIPT $N $ENABLE_PRINT $ANSWER_NUMBER
 
@@ -33,7 +34,7 @@ function main() {
         let TOTAL+=${result_count[$i]}
         AVERAGE=`echo "scale=4; ${TOTAL} / ${#result_count[*]}" | bc`
 
-        printf "\n# Latest Average = $AVERAGE\n"
+        printf "\n# Latest Average = $AVERAGE\n\n"
     done
 
     printf "==== ResultCount history =====\n"
@@ -46,14 +47,17 @@ function main() {
     AVERAGE=`echo "scale=4; ${TOTAL} / ${i}" | bc`
     end_time=`date "+%Y-%m-%d %H:%M:%S"`
 
-    printf "==============================\n"
-    printf "average = $AVERAGE\n"
-    printf "==============================\n"
-    printf "start ... $start_time\n"
-    printf "end   ... $end_time\n"
-    printf "Total execution time ... $SECONDS[s]\n"
+    printf \
+"==============================\n"\
+"average = $AVERAGE\n"\
+"==============================\n"\
+"start ... $start_time\n"\
+"end   ... $end_time\n"\
+"Total execution time ... $SECONDS[s]\n"
+
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     main $N $MAX
 fi
+

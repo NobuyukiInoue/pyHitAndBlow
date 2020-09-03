@@ -54,11 +54,11 @@ function main([int]$N, [int]$MAX) {
     $AVERAGE = ${TOTAL} / $ResultCount.Length
     $EndTime = Get-Date
 
-    Write-Output "=============================="
-    Write-Output "Total Average = $AVERAGE"
-    Write-Output "=============================="
-    Write-Output "start ... $($StartTime.ToString('yyyy-MM-dd HH:mm:ss'))"
-    Write-Output "end   ... $($EndTime.ToString('yyyy-MM-dd HH:mm:ss'))"
+    Write-Output "==============================" `
+                 "Total Average = $AVERAGE" `
+                 "==============================" `
+                 "start ... $($StartTime.ToString('yyyy-MM-dd HH:mm:ss'))" `
+                 "end   ... $($EndTime.ToString('yyyy-MM-dd HH:mm:ss'))"
 
     Write-Output "Total execution time ... $(($EndTime - $StartTime).TotalSeconds)[s]"
 }

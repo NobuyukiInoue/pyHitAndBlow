@@ -36,19 +36,19 @@ If run with no arguments, enter as many Hit and Blow answers as the number offer
 $ python pyHitAndBlow_offence.py
 
 (remaining count = 5040) Is your number 7016 ?
-[1] : please input H, B = 0,1
+[1] : please input H, B = 0,1            <--- "0,1", "0 1", "01" are also acceptable.
 
 (remaining count = 1440) Is your number 2950 ?
-[2] : please input H, B = 0,1
+[2] : please input H, B = 0,1            <--- "0,1", "0 1", "01" are also acceptable.
 
 (remaining count =  378) Is your number 4365 ?
-[3] : please input H, B = 0,2
+[3] : please input H, B = 0,2            <--- "0,2", "0 2", "02" are also acceptable.
 
 (remaining count =   99) Is your number 3628 ?
-[4] : please input H, B = 0,2
+[4] : please input H, B = 0,2            <--- "0,2", "0 2", "02" are also acceptable.
 
 (remaining count =   19) Is your number 1234 ?
-[5] : please input H, B = 4,0
+[5] : please input H, B = 4,0            <--- "4,0", "4 0", "40", "4" are also acceptable.
 calculate successful.
 
 ===== challenge history =====
@@ -245,24 +245,24 @@ calculate successful.
 [5] (   6) ---> 6097 (0, 2)
 [6] (   1) ---> 8160 (4, 0)
 
-# Latest Average = 5.4
+# Latest Average = 5.4000
 
 ==== ResultCount history =====
-ResultCount[0] = 4
-ResultCount[1] = 5
-ResultCount[2] = 6
-ResultCount[3] = 6
-ResultCount[4] = 5
-ResultCount[5] = 4
-ResultCount[6] = 4
-ResultCount[7] = 7
-ResultCount[8] = 7
-ResultCount[9] = 6
+result_count[0] = 4
+result_count[1] = 5
+result_count[2] = 6
+result_count[3] = 5
+result_count[4] = 6
+result_count[5] = 4
+result_count[6] = 5
+result_count[7] = 6
+result_count[8] = 7
+result_count[9] = 6
 ==============================
-average = 5.4
+average = 5.4000
 ==============================
-start ... 2020-09-01 22:12:22
-end   ... 2020-09-01 22:12:23
+start ... 2020-09-01 22:01:00
+end   ... 2020-09-01 22:01:01
 Total execution time ... 1[s]
 ```
 
@@ -316,7 +316,7 @@ ResultCount[7] = 6
 ResultCount[8] = 5
 ResultCount[9] = 5
 ==============================
-average = 5.4
+Total Average = 5.4
 ==============================
 start ... 2020-09-01 22:09:06
 end   ... 2020-09-01 22:09:07

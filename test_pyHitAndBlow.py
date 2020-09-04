@@ -17,8 +17,8 @@ def main():
     total = 0
     start_time = time.time()
     for i in range(MAX):
-        print("#------------------------------#"
-              "# Running ... {0:d}/{1:d}"
+        print("#------------------------------#\n"
+              "# Running ... {0:d}/{1:d}\n"
               "#------------------------------#"
               .format(i + 1, MAX))
 

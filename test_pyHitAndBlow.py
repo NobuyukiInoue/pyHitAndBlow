@@ -38,6 +38,10 @@ def main():
 
     end_time = time.time()
 
+    print("==== ResultCount history =====")
+    for i in range(len(result_count)):
+        print("ResultCount[{0:d}] = {1}".format(i, result_count[i]))
+
     print("==============================\n"
           "Total Average = {0}\n"
           "==============================\n"

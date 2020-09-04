@@ -208,13 +208,14 @@ $ python create_random_n_digits_number.py 4
 
 ## 4. test scripts.
 
-### 4-1. test_pyHitAndBlow.sh
+### 4-1. test_pyHitAndBlow.py
 
-This is a bash script that executes continuously and calculates the average value.
+This is a python script that executes continuously and calculates the average value.
+(Faster than ./testscripts/test_pyHitAndBlow.sh or ./testscripts/test_pyHitAndBlow.ps)
 
 #### 4-1-1. Usage.
 ```
-test_pyHitAndBlow.sh [N [MAX]]
+python test_pyHitAndBlow.py [N [MAX]]
 ```
 
 #### 4-1.2. Options.
@@ -225,6 +226,63 @@ N|digits of answer number. (2 <= N <= 10)<br>(default ... 4)
 MAX|repeat count.<br>(default ... 10)
 
 #### 4-1-3. Execution example
+
+```
+$ python test_pyHitAndBlow.py
+...
+...
+(remaining count =    2) Is your number 3970 ?
+input response is Hit = 2, Blow = 2
+
+(remaining count =    1) Is your number 9370 ?
+input response is Hit = 4, Blow = 0
+
+===== challenge history ======
+[1]  .... 5076 (1, 1)
+[2]  .... 6049 (0, 2)
+[3]  .... 5634 (0, 1)
+[4]  .... 4870 (2, 0)
+[5]  .... 3970 (2, 2)
+[6]  .... 9370 (4, 0)
+
+# Latest Average = 5.4000
+
+==== ResultCount history =====
+ResultCount[0] = 7
+ResultCount[1] = 5
+ResultCount[2] = 6
+ResultCount[3] = 5
+ResultCount[4] = 4
+ResultCount[5] = 5
+ResultCount[6] = 5
+ResultCount[7] = 5
+ResultCount[8] = 6
+ResultCount[9] = 6
+==============================
+Total Average = 5.4
+==============================
+start ... 2020-09-04 16:50:27.382880
+end   ... 2020-09-04 16:50:27.594878
+Total execution time ... 0.2120[s]
+```
+
+### 4-2. test_pyHitAndBlow.sh
+
+This is a bash script that executes continuously and calculates the average value.
+
+#### 4-2-1. Usage.
+```
+test_pyHitAndBlow.sh [N [MAX]]
+```
+
+#### 4-2.2. Options.
+
+|Options|Explanation|
+|-------|-----------|
+N|digits of answer number. (2 <= N <= 10)<br>(default ... 4)
+MAX|repeat count.<br>(default ... 10)
+
+#### 4-2-3. Execution example
 
 ```
 $ ./testscripts/test_pyHitAndBlow.sh 4 10
@@ -266,23 +324,24 @@ end   ... 2020-09-01 22:01:01
 Total execution time ... 1[s]
 ```
 
-### 4-2. test_pyHitAndBlow.ps1
+### 4-3. test_pyHitAndBlow.ps1
 
 This is a PowerShell script that executes continuously and calculates the average value.
+(It is slower than the other two scripts due to the large process startup/termination overhead on MS-Windows.)
 
-#### 4-2-1. Usage.
+#### 4-3-1. Usage.
 ```
 test_pyHitAndBlow.ps1 [N] [MAX]
 ```
 
-#### 4-2-2. Options.
+#### 4-3-2. Options.
 
 |Options|Explanation|
 |-------|-----------|
 N|digits of answer number. (2 <= N <= 10)<br>(default ... 4)
 MAX|repeat count.<br>(default ... 10)
 
-#### 4-2-3. Execution example
+#### 4-3-3. Execution example
 
 ```
 D:\pyHitAndBlow> .\testscripts\test_pyHitAndBlow.ps1 4 10

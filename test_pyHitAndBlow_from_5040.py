@@ -9,20 +9,21 @@ def main():
     """
     function main.
     """
-    N, MAX = check_arguments(sys.argv)
+    N = check_arguments(sys.argv)
     if N is None:
         return
 
     result_count = []
     total = 0
     start_time = time.time()
-    for i in range(MAX):
+    answer_numbers = lib_hit_and_blow.create_target_numbers(N)
+    for i in range(len(answer_numbers)):
         print("#------------------------------#\n"
               "# Running ... {0:d}/{1:d}\n"
               "#------------------------------#"
-              .format(i + 1, MAX))
+              .format(i + 1, len(answer_numbers)))
 
-        answer_number = lib_hit_and_blow.create_random_n_digits_number(N)
+        answer_number = answer_numbers[i]
         target_numbers = lib_hit_and_blow.create_target_numbers(N)
         result, history = lib_hit_and_blow.offence(N, target_numbers, False, answer_number)
         lib_hit_and_blow.print_defence_history(N, history, result)
@@ -68,13 +69,7 @@ def check_arguments(argv:[str]) -> (int, bool, str):
             print("{0} is not decimal.".format(argv[1]))
             return None, None
 
-    # set MAX(repeat count)
-    MAX = 10
-    if len(argv) >= 3:
-         if argv[2].isdecimal():
-             MAX = int(argv[2])
-
-    return N, MAX
+    return N
 
 
 if __name__ == '__main__':

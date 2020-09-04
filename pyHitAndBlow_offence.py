@@ -28,7 +28,7 @@ def check_arguments(argv:[str]) -> (int, bool, str):
     N = 4
     if len(argv) >= 2:
         if argv[1].isdecimal():
-            N = int(sys.argv[1])
+            N = int(argv[1])
             if N < 2 or N > 10:
                 print("Give n between 2 and 10 inclusive.")
                 return None, None, None

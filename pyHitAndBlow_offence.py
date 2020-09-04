@@ -9,7 +9,7 @@ def main() -> int:
     """
     N, enable_print, answer_number = check_arguments(sys.argv)
     if N is None:
-        return
+        return 0
 
     target_numbers = lib_hit_and_blow.create_target_numbers(N)
     result, history = lib_hit_and_blow.offence(N, target_numbers, enable_print, answer_number)
@@ -49,8 +49,8 @@ def check_arguments(argv:[str]) -> (int, bool, str):
         if argv[3].isdecimal():
             answer_number = argv[3]
             if len(answer_number) != N:
-                print("answer number digits is not {0}".format(N))
-                return 0
+                print("answer number {0} digits is not {1}".format(answer_number, N))
+                return None, None, None
             print("set answer number ... {0}".format(answer_number))
         else:
             print("{0} is not decimal.".format(argv[3]))

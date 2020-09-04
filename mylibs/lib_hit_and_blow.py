@@ -152,9 +152,8 @@ def create_canidiate_number(n:int, target_numbers:[str], history:HistoryRecords)
     create canidiate number.
     """
     if len(history.challenge) == 0:
-        while True:
-            index = random.randint(0, len(target_numbers) - 1)
-            return str(target_numbers[index])
+        index = random.randint(0, len(target_numbers) - 1)
+        return str(target_numbers[index])
     else:
         while True:
             index = random.randint(0, len(target_numbers) - 1)
@@ -169,9 +168,8 @@ def create_canidiate_number_same_response(n:int, target_numbers:[str], history:H
     create canidiate number.
     """
     if len(history.challenge) == 0:
-        while True:
-            index = random.randint(0, len(target_numbers) - 1)
-            return str(target_numbers[index])
+        index = random.randint(0, len(target_numbers) - 1)
+        return str(target_numbers[index])
     else:
         while True:
             index = random.randint(0, len(target_numbers) - 1)

@@ -22,16 +22,16 @@ def create_target_numbers(n:int)-> [str]:
         if n == 0:
             target_numbers.append(workStr)
             return
-        for i in range(0, 10):
+        for i in range(10):
             if str(i) not in workStr:
                 sub_create_target_numbers(n - 1, workStr + str(i))
 
     if n == 1:
-        for i in range(0, 10):
+        for i in range(10):
             target_numbers.append(str(i))
     
     elif n > 1:
-        for i in range(0, 10):
+        for i in range(10):
             sub_create_target_numbers(n - 1, str(i))
 
     return target_numbers
@@ -161,6 +161,23 @@ def create_canidiate_number(n:int, target_numbers:[str], history:HistoryRecords)
             selected_number = str(target_numbers[index])
             if selected_number in history.challenge:
                 continue
+            return selected_number
+
+
+def create_canidiate_number_same_response(n:int, target_numbers:[str], history:HistoryRecords) -> str:
+    """
+    create canidiate number.
+    """
+    if len(history.challenge) == 0:
+        while True:
+            index = random.randint(0, len(target_numbers) - 1)
+            return str(target_numbers[index])
+    else:
+        while True:
+            index = random.randint(0, len(target_numbers) - 1)
+            selected_number = str(target_numbers[index])
+            if selected_number in history.challenge:
+                continue
             H, B = response_check(n, history.challenge[-1], selected_number)
             if history.response[-1] == [H, B]:
                 return selected_number
@@ -182,9 +199,6 @@ def create_canidiate_number4_Minimum_question_strategy(n:int, target_numbers:[st
                 continue
             H, B = response_check(n, history.challenge[-1], selected_number)
 
-            """
-            Highest winning strategy
-            """
             if history.response[-1] == [3, 0]:
                 if (H, B) == (1, 1):
                     return selected_number
@@ -233,7 +247,7 @@ def create_canidiate_number4_Minimum_question_strategy(n:int, target_numbers:[st
             selected_number = str(target_numbers[index])
             if selected_number in history.challenge:
                 continue
-            return str(target_numbers[index])
+            return selected_number
 
 
 def create_canidiate_number4_Highest_winning_strategy(n:int, target_numbers:[str], history:HistoryRecords) -> str:
@@ -243,18 +257,11 @@ def create_canidiate_number4_Highest_winning_strategy(n:int, target_numbers:[str
     """
     if len(history.challenge) == 1:
         while True:
-            """
-            index = random.randint(0, len(target_numbers) - 1)
-            selected_number = str(target_numbers[index])
-            """
             selected_number = create_random_n_digits_number(n)
             if selected_number in history.challenge:
                 continue
             H, B = response_check(n, history.challenge[-1], selected_number)
 
-            """
-            Highest winning strategy
-            """
             if history.response[-1] == [3, 0]:
                 if (H, B) == (1, 0):
                     return selected_number
@@ -303,7 +310,7 @@ def create_canidiate_number4_Highest_winning_strategy(n:int, target_numbers:[str
             selected_number = str(target_numbers[index])
             if selected_number in history.challenge:
                 continue
-            return str(target_numbers[index])
+            return selected_number
 
 
 def response_check(n:int, answer_number:str, target_number:str) -> (int, int):

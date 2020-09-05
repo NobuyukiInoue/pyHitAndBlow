@@ -192,14 +192,14 @@ def create_canidiate_number(n:int, target_numbers:[str], history:HistoryRecords)
     """
     if len(history.challenge) == 0:
         index = random.randint(0, len(target_numbers) - 1)
-        return str(target_numbers[index])
+        return target_numbers[index]
     else:
         while True:
             index = random.randint(0, len(target_numbers) - 1)
-            selected_number = str(target_numbers[index])
-            if selected_number in history.challenge:
+            target_numbers[index]
+            if target_numbers[index] in history.challenge:
                 continue
-            return selected_number
+            return target_numbers[index]
 
 
 def create_canidiate_number_same_response(n:int, target_numbers:[str], history:HistoryRecords) -> str:
@@ -208,7 +208,7 @@ def create_canidiate_number_same_response(n:int, target_numbers:[str], history:H
     """
     if len(history.challenge) == 0:
         index = random.randint(0, len(target_numbers) - 1)
-        return str(target_numbers[index])
+        return target_numbers[index]
     else:
         while True:
             index = random.randint(0, len(target_numbers) - 1)
@@ -281,10 +281,9 @@ def create_canidiate_number4_Minimum_question_strategy(n:int, target_numbers:[st
     else:
         while True:
             index = random.randint(0, len(target_numbers) - 1)
-            selected_number = str(target_numbers[index])
-            if selected_number in history.challenge:
+            if target_numbers[index] in history.challenge:
                 continue
-            return selected_number
+            return target_numbers[index]
 
 
 def create_canidiate_number4_Highest_winning_strategy(n:int, target_numbers:[str], history:HistoryRecords) -> str:
@@ -344,10 +343,9 @@ def create_canidiate_number4_Highest_winning_strategy(n:int, target_numbers:[str
     else:
         while True:
             index = random.randint(0, len(target_numbers) - 1)
-            selected_number = str(target_numbers[index])
-            if selected_number in history.challenge:
+            if target_numbers[index] in history.challenge:
                 continue
-            return selected_number
+            return target_numbers[index]
 
 
 def response_check(n:int, answer_number:str, target_number:str) -> (int, int):

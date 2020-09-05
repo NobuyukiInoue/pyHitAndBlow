@@ -18,7 +18,7 @@ function main() {
     TARGET_PYTHON_SCRIPT="./pyHitAndBlow_offence.py"
     ENABLE_PRINT="false"
     result_count=()
-    TOTAL=0
+    total=0
 
     for ((i=0; i < $MAX; i++)); do
         ANSWER_NUMBER=`python ./create_random_n_digits_number.py $N`
@@ -31,29 +31,44 @@ function main() {
         python $TARGET_PYTHON_SCRIPT $N $ENABLE_PRINT $ANSWER_NUMBER
 
         result_count+=($?)
-        let TOTAL+=${result_count[$i]}
-        AVERAGE=`echo "scale=4; ${TOTAL} / ${#result_count[*]}" | bc`
+        let total+=${result_count[$i]}
+        average=`echo "scale=4; ${total} / ${#result_count[*]}" | bc`
 
-        printf "\n# Latest Average = $AVERAGE\n\n"
+        printf "\n# Latest average = $average\n\n"
     done
 
-    printf "==== ResultCount history =====\n"
+    printf "==== result_count history =====\n"
     i=0
-    for e in ${result_count[@]}; do
-        printf "result_count[$i] = ${e}\n"
+    for temp in ${result_count[@]}; do
+        printf "result_count[$i] = ${temp}\n"
         let i++
     done
 
-    AVERAGE=`echo "scale=4; ${TOTAL} / ${i}" | bc`
+    average=`echo "scale=4; ${total} / ${i}" | bc`
     end_time=`date "+%Y-%m-%d %H:%M:%S"`
+
+    printf "======== distribution ========\n"
+    question_count=(0 0 0 0 0 0 0 0 0 0 0 0 0)
+    for temp in ${result_count[@]}; do
+        let question_count[${temp}]++
+    done
+
+    question_count_total=0
+    for ((i=0; i < ${#question_count[@]}; i++)); do
+        printf "${i} ... ${question_count[${i}]}\n"
+        let question_count_total+=${question_count[${i}]}
+    done
+    printf "Distribution list total = $question_count_total\n"
+
 
     printf \
 "==============================\n"\
-"average = $AVERAGE\n"\
+"Total Questions = $total\n"\
+"Total average   = $average\n"\
 "==============================\n"\
 "start ... $start_time\n"\
 "end   ... $end_time\n"\
-"Total execution time ... $SECONDS[s]\n"
+"total execution time ... $SECONDS[s]\n"
 
 }
 

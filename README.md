@@ -228,7 +228,7 @@ MAX|repeat count.<br>(default ... 10)
 #### 4-1-3. Execution example
 
 ```
-$ python test_pyHitAndBlow.py
+$ python test_pyHitAndBlow.py 4 10
 ...
 ...
 (remaining count =    2) Is your number 3970 ?
@@ -248,22 +248,37 @@ input response is Hit = 4, Blow = 0
 # Latest Average = 5.4000
 
 ==== ResultCount history =====
-ResultCount[0] = 7
-ResultCount[1] = 5
+ResultCount[0] = 6
+ResultCount[1] = 7
 ResultCount[2] = 6
 ResultCount[3] = 5
-ResultCount[4] = 4
-ResultCount[5] = 5
+ResultCount[4] = 5
+ResultCount[5] = 6
 ResultCount[6] = 5
 ResultCount[7] = 5
-ResultCount[8] = 6
-ResultCount[9] = 6
+ResultCount[8] = 4
+ResultCount[9] = 5
+======== distribution ========
+0 ... 0
+1 ... 0
+2 ... 0
+3 ... 0
+4 ... 1
+5 ... 5
+6 ... 3
+7 ... 1
+8 ... 0
+9 ... 0
+10 ... 0
+11 ... 0
+12 ... 0
+Distribution list Total = 10
 ==============================
-Total Average = 5.4
+Total Questions = 54
+Total Average   = 5.4
 ==============================
-start ... 2020-09-04 16:50:27.382880
-end   ... 2020-09-04 16:50:27.594878
-Total execution time ... 0.2120[s]
+start ... 2020-09-05 12:03:34.129205
+end   ... 2020-09-05 12:03:34.271266
 ```
 
 ### 4-2. test_pyHitAndBlow.sh
@@ -288,40 +303,55 @@ MAX|repeat count.<br>(default ... 10)
 $ ./testscripts/test_pyHitAndBlow.sh 4 10
 ...
 ...
-(remaining count =    6) Is your number 6097 ?
-input response is Hit = 0, Blow = 2
+(remaining count =   84) Is your number 3941 ?
+input response is Hit = 1, Blow = 0
 
-(remaining count =    1) Is your number 8160 ?
+(remaining count =   15) Is your number 3827 ?
 input response is Hit = 4, Blow = 0
 calculate successful.
 
 ===== challenge history ======
-[1] (5040) ---> 4065 (1, 1)
-[2] ( 720) ---> 4203 (0, 1)
-[3] ( 180) ---> 8495 (1, 0)
-[4] (  26) ---> 1467 (1, 1)
-[5] (   6) ---> 6097 (0, 2)
-[6] (   1) ---> 8160 (4, 0)
+[1] (5040) ---> 9085 (0, 1)
+[2] (1440) ---> 5132 (0, 2)
+[3] ( 369) ---> 1370 (0, 2)
+[4] (  84) ---> 3941 (1, 0)
+[5] (  15) ---> 3827 (4, 0)
 
-# Latest Average = 5.4000
+# Latest average = 5.3000
 
-==== ResultCount history =====
-result_count[0] = 4
-result_count[1] = 5
-result_count[2] = 6
+==== result_count history =====
+result_count[0] = 6
+result_count[1] = 7
+result_count[2] = 4
 result_count[3] = 5
 result_count[4] = 6
-result_count[5] = 4
-result_count[6] = 5
-result_count[7] = 6
-result_count[8] = 7
-result_count[9] = 6
+result_count[5] = 5
+result_count[6] = 4
+result_count[7] = 5
+result_count[8] = 6
+result_count[9] = 5
+======== distribution ========
+0 ... 0
+1 ... 0
+2 ... 0
+3 ... 0
+4 ... 2
+5 ... 4
+6 ... 3
+7 ... 1
+8 ... 0
+9 ... 0
+10 ... 0
+11 ... 0
+12 ... 0
+Distribution list total = 10
 ==============================
-average = 5.4000
+Total Questions = 53
+Total average   = 5.3000
 ==============================
-start ... 2020-09-01 22:01:00
-end   ... 2020-09-01 22:01:01
-Total execution time ... 1[s]
+start ... 2020-09-05 13:09:44
+end   ... 2020-09-05 13:09:46
+total execution time ... 2[s]
 ```
 
 ### 4-3. test_pyHitAndBlow.ps1
@@ -347,39 +377,55 @@ MAX|repeat count.<br>(default ... 10)
 D:\pyHitAndBlow> .\testscripts\test_pyHitAndBlow.ps1 4 10
 ...
 ...
-(remaining count =   16) Is your number 3895 ?
-input response is Hit = 2, Blow = 2
+(remaining count =    6) Is your number 7105 ?
+input response is Hit = 2, Blow = 1
 
-(remaining count =    1) Is your number 5893 ?
+(remaining count =    1) Is your number 7915 ?
 input response is Hit = 4, Blow = 0
 calculate successful.
 
 ===== challenge history ======
-[1] (5040) ---> 6380 (0, 2)
-[2] (1260) ---> 4069 (0, 1)
-[3] ( 304) ---> 1938 (0, 3)
-[4] (  16) ---> 3895 (2, 2)
-[5] (   1) ---> 5893 (4, 0)
+[1] (5040) ---> 2867 (0, 1)
+[2] (1440) ---> 8435 (1, 0)
+[3] ( 126) ---> 9470 (0, 2)
+[4] (  26) ---> 6039 (0, 1)
+[5] (   6) ---> 7105 (2, 1)
+[6] (   1) ---> 7915 (4, 0)
 
 # Latest Average = 5.4
 
 ==== ResultCount history =====
-ResultCount[0] = 6
-ResultCount[1] = 5
-ResultCount[2] = 7
-ResultCount[3] = 4
-ResultCount[4] = 5
-ResultCount[5] = 7
-ResultCount[6] = 4
-ResultCount[7] = 6
-ResultCount[8] = 5
-ResultCount[9] = 5
+ResultCount[0] = 5
+ResultCount[1] = 4
+ResultCount[2] = 5
+ResultCount[3] = 5
+ResultCount[4] = 6
+ResultCount[5] = 5
+ResultCount[6] = 7
+ResultCount[7] = 7
+ResultCount[8] = 4
+ResultCount[9] = 6
+======== distribution ========
+0 ... 0
+1 ... 0
+2 ... 0
+3 ... 0
+4 ... 2
+5 ... 4
+6 ... 2
+7 ... 2
+8 ... 0
+9 ... 0
+10 ... 0
+11 ... 0
+Distribution list Total = 10
 ==============================
-Total Average = 5.4
+Total Questions = 54
+Total Average   = 5.4
 ==============================
-start ... 2020-09-01 22:09:06
-end   ... 2020-09-01 22:09:07
-Total execution time ... 1.5060625[s]
+start ... 2020-09-05 12:20:56
+end   ... 2020-09-05 12:20:57
+Total execution time ... 1.1599779[s]
 ```
 
 ## Licence

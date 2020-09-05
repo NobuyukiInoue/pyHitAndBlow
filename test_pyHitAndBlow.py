@@ -42,14 +42,25 @@ def main():
     for i in range(len(result_count)):
         print("ResultCount[{0:d}] = {1}".format(i, result_count[i]))
 
+    print("======== distribution ========")
+    question_count = [0 for _ in range(13)]
+    for num in result_count:
+        question_count[num] += 1
+    for i in range(len(question_count)):
+        print("{0} ... {1}".format(i, question_count[i]))
+    print("Distribution list Total = {0}".format(sum(question_count)))
+
     print("==============================\n"
-          "Total Average = {0}\n"
+          "Total Questions = {0}\n"
+          "Total Average   = {1}\n"
           "==============================\n"
-          "start ... {1}\n"
-          "end   ... {2}\n"
-          "Total execution time ... {3:.4f}[s]"
-          .format(average, datetime.datetime.fromtimestamp(start_time), datetime.datetime.fromtimestamp(end_time), end_time - start_time))
-#         .format(average, time.strftime("%Y-%m-%d %H:%M:%S",  time.strptime(start_time)), time.strftime("%Y-%m-%d %H:%M:%S", end_time), end_time - start_time))
+          "start ... {2}\n"
+          "end   ... {3}\n"
+          "Total execution time ... {4:.4f}[s]"
+          .format(total, average, datetime.datetime.fromtimestamp(start_time), datetime.datetime.fromtimestamp(end_time), end_time - start_time))
+
+    return
+
 
 def check_arguments(argv:[str]) -> (int, bool, str):
     """

@@ -277,7 +277,6 @@ def create_canidiate_number4_Minimum_question_strategy(n:int, target_numbers:[st
                     return selected_number
             else:
                 return selected_number
-
     else:
         while True:
             index = random.randint(0, len(target_numbers) - 1)
@@ -339,7 +338,6 @@ def create_canidiate_number4_Highest_winning_strategy(n:int, target_numbers:[str
                     return selected_number
             else:
                 return selected_number
-
     else:
         while True:
             index = random.randint(0, len(target_numbers) - 1)
@@ -353,15 +351,13 @@ def response_check(n:int, answer_number:str, target_number:str) -> (int, int):
     response check.
     """
     H, B = 0, 0
-    for col in range(0, n):
-        if target_number[col] == answer_number[col]:
-            H += 1
-
     for i in range(0, n):
-        for j in range(0, n):
-            if i != j and target_number[i] == answer_number[j]:
-                B += 1
-
+        if target_number[i] == answer_number[i]:
+            H += 1
+        else:
+            for j in range(0, n):
+                if i != j and target_number[i] == answer_number[j]:
+                    B += 1
     return H, B
 
 

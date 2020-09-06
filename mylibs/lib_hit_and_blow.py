@@ -350,6 +350,7 @@ def response_check(n:int, answer_number:str, target_number:str) -> (int, int):
     """
     response check.
     """
+    """
     H, B = 0, 0
     for i in range(0, n):
         if target_number[i] == answer_number[i]:
@@ -358,6 +359,14 @@ def response_check(n:int, answer_number:str, target_number:str) -> (int, int):
             for j in range(0, n):
                 if i != j and target_number[i] == answer_number[j]:
                     B += 1
+    return H, B
+    """
+    H, B = 0, 0
+    for n, m in zip(answer_number, target_number):
+        if n == m:
+            H += 1
+        elif n in target_number:
+            B += 1
     return H, B
 
 

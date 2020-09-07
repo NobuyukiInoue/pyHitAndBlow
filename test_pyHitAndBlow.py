@@ -16,6 +16,7 @@ def main():
     result_count = []
     total = 0
     start_time = time.time()
+
     for i in range(MAX):
         print("#------------------------------#\n"
               "# Running ... {0:d}/{1:d}\n"
@@ -39,15 +40,20 @@ def main():
     end_time = time.time()
 
     print("==== ResultCount history =====")
-    for i in range(len(result_count)):
-        print("ResultCount[{0:d}] = {1}".format(i, result_count[i]))
+
+    for i, item in enumerate(result_count):
+        print("ResultCount[{0:d}] = {1}".format(i, item))
 
     print("======== distribution ========")
+
     question_count = [0 for _ in range(13)]
+
     for num in result_count:
         question_count[num] += 1
-    for i in range(len(question_count)):
-        print("{0} ... {1}".format(i, question_count[i]))
+
+    for i, item in enumerate(question_count):
+        print("{0} ... {1}".format(i, item))
+
     print("Distribution list Total = {0}".format(sum(question_count)))
 
     print("==============================\n"

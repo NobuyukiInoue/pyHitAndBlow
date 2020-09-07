@@ -479,11 +479,11 @@ def print_and_count_remaining(target_numbers:list, enable_print:bool, answer_num
     if enable_print:
         print("----+-----")
 
-    for i in range(len(target_numbers)):
+    for i, item in enumerate(target_numbers):
         remaing_count += 1
         if enable_print:
-            print("{0:04}: {1}".format(remaing_count, target_numbers[i]))
-        if target_numbers[i] == answer_number:
+            print("{0:04}: {1}".format(remaing_count, item))
+        if item == answer_number:
             is_left_answer = True
 
     if enable_print:
